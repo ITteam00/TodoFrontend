@@ -1,8 +1,8 @@
 <button class="top-left-button" (click)="onBackClick()">back to the list</button>
 
 <div class="result-item">
-    <input type="checkbox" [checked]="result.Done" (change)="onCheckboxChange($event)">
-    <input class="input-label" [(ngModel)]="result.Description" (input)="onLabelChange()" />
+    <input type="checkbox" [checked]="result.done" (change)="onCheckboxChange($event)">
+    <input class="input-label" [(ngModel)]="result.description" (input)="onLabelChange()" />
 </div>
 <button class="right-button" (click)="onSaveClick()">Save</button>
 <button class="left-button" (click)="onDeleteClick()">Delete</button>

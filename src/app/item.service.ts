@@ -8,14 +8,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ItemService implements OnInit {
-  private apiUrl = environment; // todo
-  constructor(private http: HttpClient) {}
+  private apiUrl = ''; // todo
+  constructor(private http: HttpClient) {
+    this.apiUrl = environment.apiUrl;
+  }
   private items: Item[] = [];
   ngOnInit(): void {
     this.items = [
-      { Id: '1', Description: 'fake 6666666666', Done: false },
-      { Id: '2', Description: 'fake aaaaaaaaaaaaaaaa', Done: false },
-      { Id: '3', Description: 'fake 8888888888888', Done: true },
+      { id: '1', description: 'fake 6666666666', done: false },
+      { id: '2', description: 'fake aaaaaaaaaaaaaaaa', done: false },
+      { id: '3', description: 'fake 8888888888888', done: true },
     ];
   }
 
@@ -28,6 +30,9 @@ export class ItemService implements OnInit {
   }
 
   getItemById(id: string): Item | undefined {
-    return this.items.find((item) => item.Id === id);
+    return this.items.find((item) => item.id === id);
+  }
+  setData(data: Item[]) { // getItems(): Item[] {
+    this.items = data;
   }
 }

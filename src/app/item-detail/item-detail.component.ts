@@ -11,9 +11,9 @@ import { Item } from '../models/item.model';
 export class ItemDetailComponent implements OnInit {
   itemId: string | undefined;
   item: Item = {
-    Id: "",
-    Description: "",
-    Done: false,
+    id: "",
+    description: "",
+    done: false,
   }
 
   constructor(
@@ -25,7 +25,7 @@ export class ItemDetailComponent implements OnInit {
     // 获取路由参数
     this.itemId = this.route.snapshot.paramMap.get('id') ?? "";
 
-    // 获取 item 详细信息（这里只是示例，你可以从服务或状态管理中获取实际数据）
+    // 获取 item 详细信息
     const itemRe = this.itemService.getItemById(this.itemId);
     if (itemRe) {
       this.item = itemRe;

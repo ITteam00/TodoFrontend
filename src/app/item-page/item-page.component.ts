@@ -10,9 +10,9 @@ import { Item } from '../models/item.model';
 export class ItemPageComponent {
   constructor(private location: Location) { }
   @Input() result: Item = {
-    Id: "",
-    Description: '',
-    Done: false
+    id: "",
+    description: '',
+    done: false
   };
 
   onDeleteClick(): void {
@@ -26,7 +26,7 @@ export class ItemPageComponent {
     this.location.back();
   }
   onCheckboxChange(event: Event): void {
-    this.result!.Done = (event.target as HTMLInputElement).checked;
+    this.result!.done = (event.target as HTMLInputElement).checked;
     console.log(this.result);
   }
   onLabelChange(): void {
