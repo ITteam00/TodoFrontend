@@ -11,6 +11,7 @@ import { CreateItemComponent } from './create-item/create-item.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ItemPageComponent } from './item-page/item-page.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,14 +22,10 @@ import { ItemDetailComponent } from './item-detail/item-detail.component';
     CreateItemComponent,
     HomePageComponent,
     ItemPageComponent,
-    ItemDetailComponent
+    ItemDetailComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  providers: [provideHttpClient()],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

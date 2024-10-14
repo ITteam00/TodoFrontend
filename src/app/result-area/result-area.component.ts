@@ -1,19 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Item } from '../models/item.model';
+import { ItemService } from '../item.service';
 
 @Component({
   selector: 'app-result-area',
   templateUrl: './result-area.component.html',
   styleUrl: './result-area.component.css',
 })
-export class ResultAreaComponent {
-  constructor(private router: Router) {}
-  results: Item[] = [
-    { Id: '1', Description: '666', Done: false },
-    { Id: '2', Description: '777', Done: false },
-    { Id: '3', Description: '8888888888888', Done: true },
-  ];
+export class ResultAreaComponent implements OnInit {
+  constructor(private router: Router, private itemService: ItemService) { }
+  results: Item[] = [];
+  ngOnInit(): void { 
+    this.results = this.itemService.getItems();
+  }
 
   onCheckboxChange(index: number, event: Event): void {
     this.results[index].Done = (event.target as HTMLInputElement).checked;
