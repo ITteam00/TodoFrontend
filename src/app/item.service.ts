@@ -3,13 +3,12 @@ import { Item } from './models/item.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../env';
 import { Observable } from 'rxjs';
-import { identifierName } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ItemService implements OnInit {
-  private apiUrl = ''; // todo
+  private apiUrl = ''; 
   constructor(private http: HttpClient) {
     this.apiUrl = environment.apiUrl;
   }
@@ -22,9 +21,6 @@ export class ItemService implements OnInit {
     ];
   }
 
-  // getItems(): Item[] {
-  //   return this.items;
-  // }
 
   getItems(): Observable<Item[]> {
     return this.http.get<Item[]>(`${this.apiUrl}/api/v1/TodoItems`);
