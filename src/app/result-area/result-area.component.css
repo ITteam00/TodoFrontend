@@ -1,0 +1,22 @@
+:host {
+    margin: 10px;
+    padding: 10px;
+    border: solid 1px #9e6582;
+    flex: 1;
+
+    .result-item {
+      display: flex;
+      background-color: #e4b3c0;
+      padding: 5px;
+      border: solid 1px #9e6582;
+      border-radius: 5px;
+    }
+
+    .result-item + .result-item {
+      margin-top: 5px;
+    }
+
+    /* .lable{
+            background-color:  #1b191a;
+        } */
+  }

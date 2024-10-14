@@ -1,0 +1,68 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid purple;
+  padding: 10px;
+  height: 700px;
+
+  background-color: #f3d4e3;
+  .app-title {
+    font-weight: bold;
+    text-align: center;
+    margin: 10px;
+  }
+
+
+
+  .filter-area {
+    margin: 10px;
+
+    display: flex;
+    .sort-by-description {
+      border-radius: 5px;
+
+      text-align: center;
+
+      border: solid 1px #9e6582;
+      padding: 5px;
+
+      flex: 1;
+      background-color: #d07894;
+    }
+    .sort-by-created-time {
+      border-radius: 5px;
+
+      text-align: center;
+
+      padding: 5px;
+
+      flex: 1;
+      border: solid 1px #9e6582;
+
+      background-color: #d07894;
+    }
+    .hide-done {
+      border-radius: 5px;
+
+      text-align: center;
+
+      padding: 5px;
+
+      flex: 1;
+      border: solid 1px #9e6582;
+
+      background-color: #d07894;
+    }
+  }
+    .create-button {
+    background-color: #d07894;
+    text-align: center;
+    padding: 3px;
+    border: 1px solid #9e6582;
+    margin: 10;
+    border-radius: 5px;
+  }
+
+
+}
+

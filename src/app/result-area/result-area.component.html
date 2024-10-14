@@ -1,0 +1,6 @@
+<div class="result-area">
+    <div class="result-item" *ngFor="let result of results; let i = index">
+        <input type="checkbox" [checked]="result.checked" (change)="onCheckboxChange(i, $event)">
+        <div class="label">{{ result.label }}</div>
+    </div>
+</div>

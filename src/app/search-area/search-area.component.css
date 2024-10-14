@@ -1,0 +1,15 @@
+  :host {
+    margin: 10px;
+    display: flex;
+
+    .search-input {
+      flex: 4;
+      padding-left: 10px;
+    }
+
+    .reload-button {
+      border-radius: 5px;
+      margin-left: 5px;
+      background-color: #d07894;
+    }
+  }
