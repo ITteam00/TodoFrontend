@@ -14,7 +14,7 @@ export class ResultAreaComponent implements OnInit {
   results: Item[] = [];
   ngOnInit(): void { 
     this.itemService.getItems().subscribe((data) => {
-      // todo 不确定是不是要这样把东西放在内存
+      // todo 不确定是不是要这样把东西放在 内存 暂时可以这样做
       this.results = data;
       this.itemService.setData(data);
       console.log("get data!", data);

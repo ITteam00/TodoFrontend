@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Location } from '@angular/common';
 import { Item } from '../models/item.model';
+import { ItemService } from '../item.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-item-page',
@@ -8,7 +10,7 @@ import { Item } from '../models/item.model';
   styleUrl: './item-page.component.css',
 })
 export class ItemPageComponent {
-  constructor(private location: Location) { }
+  constructor(private location: Location, private itemService: ItemService) { }
   @Input() result: Item = {
     id: "",
     description: '',
@@ -16,11 +18,30 @@ export class ItemPageComponent {
   };
 
   onDeleteClick(): void {
-    console.log('delete' + this.result);
+    console.log('delete');
+    this.itemService.deleteItem(this.result.id);
   }
 
   onSaveClick(): void {
-    console.log('onSaveClick' + this.result);
+    console.log('onSaveClick');
+    console.log(this.result);
+    if (this.result.id) {
+          this.itemService.updateItem(this.result).subscribe(
+            (data: Item) => {
+              console.log('Item updated successfully:', data);
+            },
+            (error: HttpErrorResponse) => {
+              console.log('eee');
+              console.log(error);
+            }
+          );
+    } else {
+      console.log("create");
+      this.itemService.createItem(this.result);
+    }
+
+
+
   }
   onBackClick(): void {
     this.location.back();
@@ -30,6 +51,6 @@ export class ItemPageComponent {
     console.log(this.result);
   }
   onLabelChange(): void {
-    console.log(this.result);
+    // console.log(this.result);
   }
 }

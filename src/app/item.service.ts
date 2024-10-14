@@ -3,6 +3,7 @@ import { Item } from './models/item.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../env';
 import { Observable } from 'rxjs';
+import { identifierName } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root',
@@ -28,11 +29,36 @@ export class ItemService implements OnInit {
   getItems(): Observable<Item[]> {
     return this.http.get<Item[]>(`${this.apiUrl}/api/v1/TodoItems`);
   }
+  updateItem(item: Item): Observable<Item> {
+    const id = item.id;
+    return this.http.put<Item>(
+      `${this.apiUrl}/api/v1/TodoItems/id?id=${id}`,
+      item
+    );
+  }
+
+  createItem(data: Item) {
+    this.http
+      .post<Item>(`${this.apiUrl}/api/v1/TodoItems/`, data)
+      .subscribe((ok) => {
+        console.log('111');
+        console.log(ok);
+      });
+  }
+
+  deleteItem(id: string): void {
+    this.http
+      .delete(`${this.apiUrl}/api/v1/TodoItems/${id}`)
+      .subscribe((ok) => {
+        console.log(ok);
+      });
+  }
 
   getItemById(id: string): Item | undefined {
     return this.items.find((item) => item.id === id);
   }
-  setData(data: Item[]) { // getItems(): Item[] {
+  setData(data: Item[]) {
+    // getItems(): Item[] {
     this.items = data;
   }
 }
