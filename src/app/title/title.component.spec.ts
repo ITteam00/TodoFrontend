@@ -20,4 +20,13 @@ describe('TitleComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+    it('should have title "To-Do-List"', () => {
+      const compiled = fixture.nativeElement;
+      const titleDiv = compiled.querySelector('.title');
+      expect(titleDiv).toBeTruthy();
+      expect(titleDiv.textContent).toBe('To-Do-List'); 
+    });
+
+
 });

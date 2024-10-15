@@ -4,10 +4,11 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ItemService } from './item.service';
 import { Item } from './models/item.model';
 
-fdescribe('ItemService', () => {
+describe('ItemService', () => {
   let service: ItemService;
 
   beforeEach(() => {
+    
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [ItemService],
