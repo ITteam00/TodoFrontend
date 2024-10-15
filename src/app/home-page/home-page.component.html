@@ -7,3 +7,6 @@
 </div>
 <app-result-area [results]="data"></app-result-area>
 <button class="create-button" (click)="onCreateItemClick()">Create Item</button>
+<app-loader *ngIf="loading">
+    <div>33333</div>
+ </app-loader>

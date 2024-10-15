@@ -12,6 +12,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ItemPageComponent } from './item-page/item-page.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { provideHttpClient } from '@angular/common/http';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { provideHttpClient } from '@angular/common/http';
     HomePageComponent,
     ItemPageComponent,
     ItemDetailComponent,
+    LoaderComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [provideHttpClient()],

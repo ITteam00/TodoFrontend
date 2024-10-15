@@ -15,17 +15,20 @@ export class HomePageComponent implements OnInit {
   title = 'TodoList';
   data = this.itemService.displayItems;
   serchValue = '';
+  loading = false;
 
   onCreateItemClick(): void {
     this.router.navigate(['/create-item']);
   }
 
   ngOnInit(): void {
+    this.loading = true;
     this.itemService.getItems().pipe(delay(3000)).subscribe(
       (data) => {
         this.itemService.setData(data);
         this.data = this.itemService.displayItems;
         console.log('get data!', data);
+        this.loading = false;
       },
       (error: HttpErrorResponse) => {
         console.log(error, error.error?.message, error.message);

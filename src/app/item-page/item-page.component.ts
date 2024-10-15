@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { Item } from '../models/item.model';
 import { ItemService } from '../item.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-item-page',
@@ -17,6 +18,9 @@ export class ItemPageComponent {
     done: false,
   };
 
+    loading = false;
+
+
   onDeleteClick(): void {
     const confirmDelete = confirm('Do you want to delete?');
     if (confirmDelete === true) {
@@ -26,6 +30,7 @@ export class ItemPageComponent {
   }
 
   onSaveClick(): void {
+    this.loading = true;
 
     console.log('onSaveClick');
     console.log(this.result);
@@ -33,9 +38,10 @@ export class ItemPageComponent {
     if (confirmSave === true) {
       if (this.result.id) {
         console.log('update');
-        this.itemService.updateItem(this.result).subscribe(
+        this.itemService.updateItem(this.result).pipe(delay(3000)).subscribe(
           (data: Item) => {
             console.log('Item updated successfully:', data);
+            this.loading = false;
           },
           (error: HttpErrorResponse) => {
             console.log('Item updated  response error');
