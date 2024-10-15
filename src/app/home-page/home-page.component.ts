@@ -20,19 +20,16 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.itemService.getItems().subscribe(
       (data) => {
         this.itemService.setData(data);
         this.data = this.itemService.displayItems;
-
         console.log('get data!', data);
       },
       (error: HttpErrorResponse) => {
         console.log(error, error.error?.message, error.message);
       }
     );
-    
   }
 
   onSearchTextChange(searchText: string) {
@@ -52,8 +49,6 @@ export class HomePageComponent implements OnInit {
     this.data = this.itemService.displayItems;
   }
   onSortByTimeClick() {
-    debugger;
-
     this.itemService.filterState = {
           sortByDes: false,
           sortByTime: !this.itemService.filterState.sortByTime,
@@ -64,7 +59,6 @@ export class HomePageComponent implements OnInit {
     this.data = this.itemService.displayItems;
   }
   onSortByDesClick() {
-    debugger;
     this.itemService.filterState = {
       sortByDes: !this.itemService.filterState.sortByDes,
       sortByTime: false,
