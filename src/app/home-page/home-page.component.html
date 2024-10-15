@@ -1,4 +1,9 @@
 <app-title />
-<app-search-area></app-search-area>
-<app-result-area></app-result-area>
+<app-search-area (searchTextChange)="onSearchTextChange($event)"></app-search-area>
+<div class="filter-area">
+    <div class="sort-by-description" (click)="onSortByDesClick()">Sort By Description</div>
+    <div class="sort-by-created-time" (click)="onSortByTimeClick()">Sort By Created Time</div>
+    <div class="hide-done" (click)="onSortByHideDoneClick()">Hide Done</div>
+</div>
+<app-result-area [results]="data"></app-result-area>
 <button class="create-button" (click)="onCreateItemClick()">Create Item</button>

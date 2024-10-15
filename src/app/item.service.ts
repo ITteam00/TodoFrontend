@@ -8,19 +8,30 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ItemService implements OnInit {
-  private apiUrl = ''; 
+  searchValue= "";
+  updateFilterStates() {
+    this.displayItems = this.filterData(this.searchValue);
+  }
+  public filterState = {
+    sortByDes: false,
+    sortByTime: false,
+    hideDone: false,
+  };
+  private apiUrl = '';
   constructor(private http: HttpClient) {
     this.apiUrl = environment.apiUrl;
   }
   private items: Item[] = [];
+  public displayItems: Item[] = [];
+
   ngOnInit(): void {
     this.items = [
       { id: '1', description: 'fake 6666666666', done: false },
       { id: '2', description: 'fake aaaaaaaaaaaaaaaa', done: false },
       { id: '3', description: 'fake 8888888888888', done: true },
     ];
+    this.displayItems = this.items;
   }
-
 
   getItems(): Observable<Item[]> {
     return this.http.get<Item[]>(`${this.apiUrl}/api/v1/TodoItems`);
@@ -56,5 +67,37 @@ export class ItemService implements OnInit {
   setData(data: Item[]) {
     // getItems(): Item[] {
     this.items = data;
+    this.displayItems = this.filterData('');
+  }
+
+  filterData(searchValue: string): Item[] {
+    let filteredData = this.items.slice(); //不用slice的话这俩指向同一个东西
+    if (searchValue.length !== 0) {
+      filteredData = filteredData.filter((item) =>
+        item.description.toLowerCase().includes(searchValue.toLowerCase())
+      );
+    }
+
+    // 过滤已完成的任务
+    if (this.filterState.hideDone) {
+      filteredData = filteredData.filter((item) => !item.done);
+    }
+
+    // 按描述排序
+    if (this.filterState.sortByDes) {
+      filteredData = filteredData.sort((a, b) =>
+        a.description.localeCompare(b.description)
+      );
+    }
+
+    // 按时间排序
+    if (this.filterState.sortByTime) {
+      filteredData = filteredData.sort((a, b) => {
+        const timeA = new Date(a.createdTime!).getTime();
+        const timeB = new Date(b.createdTime!).getTime();
+        return timeA - timeB;
+      });
+    }
+    return filteredData;
   }
 }

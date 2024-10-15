@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Item } from '../models/item.model';
 import { ItemService } from '../item.service';
@@ -11,12 +11,13 @@ import { HttpErrorResponse, HttpRequest } from '@angular/common/http';
 })
 export class ResultAreaComponent implements OnInit {
   constructor(private router: Router, private itemService: ItemService) { }
-  results: Item[] = [];
+  @Input() results:Item[] = [];
   ngOnInit(): void { 
     this.itemService.getItems().subscribe((data) => {
       // todo 不确定是不是要这样把东西放在 内存 暂时可以这样做
-      this.results = data;
       this.itemService.setData(data);
+      this.results = this.itemService.displayItems;
+
       console.log("get data!", data);
       console.log("re:", this.results);
     },

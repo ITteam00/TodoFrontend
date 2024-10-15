@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-search-area',
@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './search-area.component.css',
 })
 export class SearchAreaComponent {
+  @Output() searchTextChange = new EventEmitter();
   searchText: string = '';
 
   constructor() {}
@@ -17,6 +18,7 @@ export class SearchAreaComponent {
 
   onReloadClick(): void {
     console.log('Reload clicked: ' + this.searchText);
+    this.searchTextChange.emit(this.searchText);
 
     this.searchText = '';
   }
