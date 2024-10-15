@@ -42,20 +42,34 @@ export class HomePageComponent implements OnInit {
   }
 
   onSortByHideDoneClick() {
-    this.itemService.filterState.hideDone =
-      !this.itemService.filterState.hideDone;
+    this.itemService.filterState =
+    {
+      sortByDes: false,
+      sortByTime: false,
+      hideDone: !this.itemService.filterState.hideDone
+    }
     this.itemService.updateFilterStates();
     this.data = this.itemService.displayItems;
   }
   onSortByTimeClick() {
-    this.itemService.filterState.sortByTime =
-      !this.itemService.filterState.sortByTime;
+    debugger;
+
+    this.itemService.filterState = {
+          sortByDes: false,
+          sortByTime: !this.itemService.filterState.sortByTime,
+          hideDone: false,
+    };
+
     this.itemService.updateFilterStates();  
     this.data = this.itemService.displayItems;
   }
   onSortByDesClick() {
-    this.itemService.filterState.sortByDes =
-      !this.itemService.filterState.sortByDes;
+    debugger;
+    this.itemService.filterState = {
+      sortByDes: !this.itemService.filterState.sortByDes,
+      sortByTime: false,
+      hideDone: false,
+    };
     this.itemService.updateFilterStates(); 
     this.data = this.itemService.displayItems;
   }
