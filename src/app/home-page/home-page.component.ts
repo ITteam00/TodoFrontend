@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ItemService } from '../item.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
@@ -20,7 +21,7 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.itemService.getItems().subscribe(
+    this.itemService.getItems().pipe(delay(3000)).subscribe(
       (data) => {
         this.itemService.setData(data);
         this.data = this.itemService.displayItems;
@@ -34,28 +35,27 @@ export class HomePageComponent implements OnInit {
 
   onSearchTextChange(searchText: string) {
     this.itemService.searchValue = searchText;
-    this.itemService.updateFilterStates();  
+    this.itemService.updateFilterStates();
     this.data = this.itemService.displayItems;
   }
 
   onSortByHideDoneClick() {
-    this.itemService.filterState =
-    {
+    this.itemService.filterState = {
       sortByDes: false,
       sortByTime: false,
-      hideDone: !this.itemService.filterState.hideDone
-    }
+      hideDone: !this.itemService.filterState.hideDone,
+    };
     this.itemService.updateFilterStates();
     this.data = this.itemService.displayItems;
   }
   onSortByTimeClick() {
     this.itemService.filterState = {
-          sortByDes: false,
-          sortByTime: !this.itemService.filterState.sortByTime,
-          hideDone: false,
+      sortByDes: false,
+      sortByTime: !this.itemService.filterState.sortByTime,
+      hideDone: false,
     };
 
-    this.itemService.updateFilterStates();  
+    this.itemService.updateFilterStates();
     this.data = this.itemService.displayItems;
   }
   onSortByDesClick() {
@@ -64,7 +64,7 @@ export class HomePageComponent implements OnInit {
       sortByTime: false,
       hideDone: false,
     };
-    this.itemService.updateFilterStates(); 
+    this.itemService.updateFilterStates();
     this.data = this.itemService.displayItems;
   }
 }

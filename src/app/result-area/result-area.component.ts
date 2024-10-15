@@ -10,9 +10,8 @@ import { HttpErrorResponse, HttpRequest } from '@angular/common/http';
   styleUrl: './result-area.component.css',
 })
 export class ResultAreaComponent {
-  constructor(private router: Router, private itemService: ItemService) { }
-  @Input() results:Item[] = [];
-
+  constructor(private router: Router, private itemService: ItemService) {}
+  @Input() results: Item[] = [];
 
   onCheckboxChange(index: number, event: Event): void {
     this.results[index].done = (event.target as HTMLInputElement).checked;

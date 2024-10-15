@@ -26,6 +26,7 @@ export class ItemPageComponent {
   }
 
   onSaveClick(): void {
+
     console.log('onSaveClick');
     console.log(this.result);
     const confirmSave = confirm('Do you want to save?');
