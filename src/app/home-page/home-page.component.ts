@@ -1,22 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ItemService } from '../item.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css',
 })
-export class HomePageComponent {
+export class HomePageComponent implements OnInit {
   constructor(private router: Router, private itemService: ItemService) {}
 
   title = 'TodoList';
   data = this.itemService.displayItems;
   serchValue = '';
-  
+
   onCreateItemClick(): void {
     this.router.navigate(['/create-item']);
     console.log('ccccccccccccccccccccccccccccc');
+  }
+
+  ngOnInit(): void {
+
+    this.itemService.getItems().subscribe(
+      (data) => {
+        this.itemService.setData(data);
+        this.data = this.itemService.displayItems;
+
+        console.log('get data!', data);
+      },
+      (error: HttpErrorResponse) => {
+        console.log('666');
+        console.log(error, error.error?.message, error.message);
+      }
+    );
+    
   }
 
   onSearchTextChange(searchText: string) {

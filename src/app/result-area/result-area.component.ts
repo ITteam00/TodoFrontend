@@ -9,24 +9,10 @@ import { HttpErrorResponse, HttpRequest } from '@angular/common/http';
   templateUrl: './result-area.component.html',
   styleUrl: './result-area.component.css',
 })
-export class ResultAreaComponent implements OnInit {
+export class ResultAreaComponent {
   constructor(private router: Router, private itemService: ItemService) { }
   @Input() results:Item[] = [];
-  ngOnInit(): void { 
-    this.itemService.getItems().subscribe((data) => {
-      // todo 不确定是不是要这样把东西放在 内存 暂时可以这样做
-      this.itemService.setData(data);
-      this.results = this.itemService.displayItems;
 
-      console.log("get data!", data);
-      console.log("re:", this.results);
-    },
-      (error:HttpErrorResponse) => {
-        console.log("666");
-        console.log(error,error.error?.message,error.message);
-      
-    });
-  }
 
   onCheckboxChange(index: number, event: Event): void {
     this.results[index].done = (event.target as HTMLInputElement).checked;
