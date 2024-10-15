@@ -17,7 +17,6 @@ export class HomePageComponent implements OnInit {
 
   onCreateItemClick(): void {
     this.router.navigate(['/create-item']);
-    console.log('ccccccccccccccccccccccccccccc');
   }
 
   ngOnInit(): void {
@@ -30,7 +29,6 @@ export class HomePageComponent implements OnInit {
         console.log('get data!', data);
       },
       (error: HttpErrorResponse) => {
-        console.log('666');
         console.log(error, error.error?.message, error.message);
       }
     );
@@ -39,7 +37,7 @@ export class HomePageComponent implements OnInit {
 
   onSearchTextChange(searchText: string) {
     this.itemService.searchValue = searchText;
-    this.itemService.updateFilterStates(); // 更新数据列表
+    this.itemService.updateFilterStates();  
     this.data = this.itemService.displayItems;
   }
 
@@ -52,13 +50,13 @@ export class HomePageComponent implements OnInit {
   onSortByTimeClick() {
     this.itemService.filterState.sortByTime =
       !this.itemService.filterState.sortByTime;
-    this.itemService.updateFilterStates(); // 更新数据列表
+    this.itemService.updateFilterStates();  
     this.data = this.itemService.displayItems;
   }
   onSortByDesClick() {
     this.itemService.filterState.sortByDes =
       !this.itemService.filterState.sortByDes;
-    this.itemService.updateFilterStates(); // 更新数据列表
+    this.itemService.updateFilterStates(); 
     this.data = this.itemService.displayItems;
   }
 }

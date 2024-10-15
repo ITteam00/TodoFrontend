@@ -22,10 +22,8 @@ export class ItemDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // 获取路由参数
     this.itemId = this.route.snapshot.paramMap.get('id') ?? "";
 
-    // 获取 item 详细信息
     const itemRe = this.itemService.getItemById(this.itemId);
     if (itemRe) {
       this.item = itemRe;

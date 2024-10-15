@@ -48,7 +48,6 @@ export class ItemService implements OnInit {
     this.http
       .post<Item>(`${this.apiUrl}/api/v1/TodoItems/`, data)
       .subscribe((ok) => {
-        console.log('111');
         console.log(ok);
       });
   }
@@ -71,26 +70,23 @@ export class ItemService implements OnInit {
   }
 
   filterData(searchValue: string): Item[] {
-    let filteredData = this.items.slice(); //不用slice的话这俩指向同一个东西
+    let filteredData = this.items.slice(); // !!! sort will change items !!!
     if (searchValue.length !== 0) {
       filteredData = filteredData.filter((item) =>
         item.description.toLowerCase().includes(searchValue.toLowerCase())
       );
     }
 
-    // 过滤已完成的任务
     if (this.filterState.hideDone) {
       filteredData = filteredData.filter((item) => !item.done);
     }
 
-    // 按描述排序
     if (this.filterState.sortByDes) {
       filteredData = filteredData.sort((a, b) =>
         a.description.localeCompare(b.description)
       );
     }
 
-    // 按时间排序
     if (this.filterState.sortByTime) {
       filteredData = filteredData.sort((a, b) => {
         const timeA = new Date(a.createdTime!).getTime();

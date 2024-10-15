@@ -31,7 +31,7 @@ export class ItemPageComponent {
               console.log('Item updated successfully:', data);
             },
             (error: HttpErrorResponse) => {
-              console.log('eee');
+              console.log('Item updated  response error');
               console.log(error);
             }
           );
