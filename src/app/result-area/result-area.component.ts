@@ -16,7 +16,17 @@ export class ResultAreaComponent {
 
   onCheckboxChange(index: number, event: Event): void {
     this.results[index].done = (event.target as HTMLInputElement).checked;
+
     console.log(this.results[index]);
+    this.itemService.updateItem(this.results[index]).subscribe(
+      (data: Item) => {
+        console.log('Item checked updated successfully:', data);
+      },
+      (error: HttpErrorResponse) => {
+        console.log('Item checked updated  response error');
+        console.log(error);
+      }
+    );
   }
   goToDetail(id: string) {
     this.router.navigate(['/item', id]);
