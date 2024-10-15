@@ -7,16 +7,15 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class ItemService implements OnInit {
-  searchValue= "";
-  updateFilterStates() {
-    this.displayItems = this.filterData(this.searchValue);
-  }
+export class ItemService {
+  searchValue = '';
+
   public filterState = {
     sortByDes: false,
     sortByTime: false,
     hideDone: false,
   };
+
   private apiUrl = '';
   constructor(private http: HttpClient) {
     this.apiUrl = environment.apiUrl;
@@ -24,13 +23,9 @@ export class ItemService implements OnInit {
   private items: Item[] = [];
   public displayItems: Item[] = [];
 
-  ngOnInit(): void {
-    this.items = [
-      { id: '1', description: 'fake 6666666666', done: false },
-      { id: '2', description: 'fake aaaaaaaaaaaaaaaa', done: false },
-      { id: '3', description: 'fake 8888888888888', done: true },
-    ];
-    this.displayItems = this.items;
+
+  updateFilterStates() {
+    this.displayItems = this.filterData(this.searchValue);
   }
 
   getItems(): Observable<Item[]> {
@@ -64,7 +59,6 @@ export class ItemService implements OnInit {
     return this.items.find((item) => item.id === id);
   }
   setData(data: Item[]) {
-    // getItems(): Item[] {
     this.items = data;
     this.displayItems = this.filterData('');
   }
