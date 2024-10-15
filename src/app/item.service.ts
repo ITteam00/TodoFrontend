@@ -17,12 +17,13 @@ export class ItemService {
   };
 
   private apiUrl = '';
-  constructor(private http: HttpClient) {
-    this.apiUrl = environment.apiUrl;
-  }
+
   private items: Item[] = [];
   public displayItems: Item[] = [];
 
+  constructor(private http: HttpClient) {
+    this.apiUrl = environment.apiUrl;
+  }
 
   updateFilterStates() {
     this.displayItems = this.filterData(this.searchValue);
@@ -31,6 +32,7 @@ export class ItemService {
   getItems(): Observable<Item[]> {
     return this.http.get<Item[]>(`${this.apiUrl}/api/v1/TodoItems`);
   }
+
   updateItem(item: Item): Observable<Item> {
     const id = item.id;
     return this.http.put<Item>(
@@ -58,6 +60,7 @@ export class ItemService {
   getItemById(id: string): Item | undefined {
     return this.items.find((item) => item.id === id);
   }
+  
   setData(data: Item[]) {
     this.items = data;
     this.displayItems = this.filterData('');
