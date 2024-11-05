@@ -13,6 +13,9 @@ import { ItemPageComponent } from './item-page/item-page.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { provideHttpClient } from '@angular/common/http';
 import { LoaderComponent } from './loader/loader.component';
+import { TodoItemListComponent } from './todo-item-list/todo-item-list.component';
+import { InputHeaderComponent } from './input-header/input-header.component';
+import { TodoItemComponent } from './todo-item/todo-item.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import { LoaderComponent } from './loader/loader.component';
     ItemPageComponent,
     ItemDetailComponent,
     LoaderComponent,
+    TodoItemListComponent,
+    InputHeaderComponent,
+    TodoItemComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [provideHttpClient()],
