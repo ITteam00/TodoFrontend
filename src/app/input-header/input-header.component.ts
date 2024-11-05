@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ItemService } from '../item.service';
 import { Item } from '../models/item.model';
 
@@ -9,19 +9,18 @@ import { Item } from '../models/item.model';
 })
 export class InputHeaderComponent {
   userInput: string = '';
+  @Output() itemAdded = new EventEmitter<void>();
 
-  constructor(
-    private itemService: ItemService
-  ) { }
-  
+  constructor(private itemService: ItemService) {}
 
   addItem() {
-    const result:Item = {
+    const result: Item = {
       id: '',
       description: this.userInput,
       done: false,
     };
     this.itemService.createItem(result);
-    this.userInput = "";
+    this.userInput = '';
+    this.itemAdded.emit();
   }
 }

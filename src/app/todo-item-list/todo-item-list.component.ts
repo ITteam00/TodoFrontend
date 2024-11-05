@@ -43,4 +43,12 @@ export class TodoItemListComponent implements OnInit {
       }
     );
   }
+
+  refreshItems() {
+    console.log("refresh");
+    this.itemService.getItems().subscribe((data: Item[]) => {
+      this.itemService.setData(data);
+      this.todoItems = this.itemService.displayItems;
+    });
+  }
 }
