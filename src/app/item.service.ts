@@ -41,12 +41,8 @@ export class ItemService {
     );
   }
 
-  createItem(data: Item) {
-    this.http
-      .post<Item>(`${this.apiUrl}/api/v1/TodoItems/`, data)
-      .subscribe((ok) => {
-        console.log(ok);
-      });
+  createItem(data: Item): Observable<Item> {
+    return this.http.post<Item>(`${this.apiUrl}/api/v1/TodoItems/`, data);
   }
 
   deleteItem(id: string): Observable<void> {

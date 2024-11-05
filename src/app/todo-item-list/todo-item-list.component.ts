@@ -47,6 +47,7 @@ export class TodoItemListComponent implements OnInit {
   refreshItems() {
     console.log("refresh")
     this.itemService.getItems().subscribe((data: Item[]) => {
+      console.log("00000", data);
       this.itemService.setData(data);
       this.todoItems = this.itemService.displayItems;
     });

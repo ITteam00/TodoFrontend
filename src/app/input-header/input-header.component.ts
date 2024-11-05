@@ -19,8 +19,16 @@ export class InputHeaderComponent {
       description: this.userInput,
       done: false,
     };
-    this.itemService.createItem(result);
-    this.userInput = '';
-    this.itemAdded.emit();
+    this.itemService.createItem(result).subscribe(
+      (ok) => {
+        console.log(ok);
+        this.userInput = '';
+
+        this.itemAdded.emit(); // 在请求成功后发出事件
+      },
+      (error) => {
+        console.error('Error creating item:', error);
+      }
+    );
   }
 }
