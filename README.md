@@ -6,3 +6,4 @@ This is a todo item, using TodoMVC to rewrite the frontend.
 
 run `npm install`, `npm start`
 
+![alt text](image.png)
