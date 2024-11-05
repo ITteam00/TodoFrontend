@@ -1,4 +1,4 @@
-<li class="completed">
+<li [class.completed]="item.done">
     <div class="view">
         <input class="toggle" type="checkbox" [checked]="item.done" />
         <label>{{item.description}}</label>

@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Item } from '../models/item.model';
-import { ItemService } from '../item.service';
 
 @Component({
   selector: 'app-todo-item',
@@ -8,11 +7,10 @@ import { ItemService } from '../item.service';
   styleUrl: './todo-item.component.css',
 })
 export class TodoItemComponent {
-  constructor(private itemService: ItemService) {}
+  @Output() removeId = new EventEmitter();
 
   onDeleteClick() {
-      this.itemService.deleteItem(this.item.id);
-
+    this.removeId.emit(this.item.id);
   }
   @Input() item!: Item;
 }

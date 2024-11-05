@@ -24,4 +24,23 @@ export class TodoItemListComponent implements OnInit {
       }
     );
   }
+  onRemove(removeId: string) {
+    this.itemService.deleteItem(removeId).subscribe(
+      () => {
+        this.itemService.getItems().subscribe(
+          (data) => {
+            this.itemService.setData(data);
+            this.todoItems = this.itemService.displayItems;
+            console.log('get data!', data);
+          },
+          (error: HttpErrorResponse) => {
+            console.log(error, error.error?.message, error.message);
+          }
+        );
+      },
+      (error: HttpErrorResponse) => {
+        console.log('Delete failed', error.error?.message, error.message);
+      }
+    );
+  }
 }

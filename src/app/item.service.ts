@@ -49,18 +49,14 @@ export class ItemService {
       });
   }
 
-  deleteItem(id: string): void {
-    this.http
-      .delete(`${this.apiUrl}/api/v1/TodoItems/${id}`)
-      .subscribe((ok) => {
-        console.log(ok);
-      });
+  deleteItem(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/api/v1/TodoItems/${id}`);
   }
 
   getItemById(id: string): Item | undefined {
     return this.items.find((item) => item.id === id);
   }
-  
+
   setData(data: Item[]) {
     this.items = data;
     this.displayItems = this.filterData('');
