@@ -1,6 +1,6 @@
-# TodoList
+# TodoList Frontend
 
-A TodoList generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.10.
+This is a todo item, using TodoMVC to rewrite the frontend.
 
 ## usage
 
