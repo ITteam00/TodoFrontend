@@ -16,6 +16,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { TodoItemListComponent } from './todo-item-list/todo-item-list.component';
 import { InputHeaderComponent } from './input-header/input-header.component';
 import { TodoItemComponent } from './todo-item/todo-item.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { TodoItemComponent } from './todo-item/todo-item.component';
     TodoItemListComponent,
     InputHeaderComponent,
     TodoItemComponent,
+    FooterComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [provideHttpClient()],
