@@ -38,7 +38,7 @@ export class ItemPageComponent {
     if (confirmSave === true) {
       if (this.result.id) {
         console.log('update');
-        this.itemService.updateItem(this.result).pipe(delay(3000)).subscribe(
+        this.itemService.updateItem(this.result).subscribe(
           (data: Item) => {
             console.log('Item updated successfully:', data);
             this.loading = false;

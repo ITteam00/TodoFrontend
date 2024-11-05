@@ -23,7 +23,7 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.itemService.getItems().pipe(delay(3000)).subscribe(
+    this.itemService.getItems().subscribe(
       (data) => {
         this.itemService.setData(data);
         this.data = this.itemService.displayItems;
