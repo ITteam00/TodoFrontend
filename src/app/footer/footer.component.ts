@@ -11,14 +11,15 @@ import { Location } from '@angular/common';
 })
 export class FooterComponent implements OnInit {
   constructor(private itemService: ItemService, private location: Location) {}
-  todoItems = this.itemService.displayItems;
+  get todoItems() {
+    return this.itemService.displayItems;
+  } 
 
   ngOnInit(): void {
     this.itemService.getItems().subscribe(
       (data) => {
         this.itemService.setData(data);
-        this.todoItems = this.itemService.displayItems;
-        console.log('get data!', data);
+        console.log('get data footer!', data);
       },
       (error: HttpErrorResponse) => {
         console.log(error, error.error?.message, error.message);
