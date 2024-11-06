@@ -10,13 +10,15 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class TodoItemListComponent implements OnInit {
   constructor(private itemService: ItemService) {}
-  todoItems = this.itemService.displayItems;
+
+  get todoItems() {
+    return this.itemService.displayItems;
+  }
 
   ngOnInit(): void {
     this.itemService.getItems().subscribe(
       (data) => {
         this.itemService.setData(data);
-        this.todoItems = this.itemService.displayItems;
         console.log('get data!', data);
       },
       (error: HttpErrorResponse) => {
@@ -30,7 +32,6 @@ export class TodoItemListComponent implements OnInit {
         this.itemService.getItems().subscribe(
           (data) => {
             this.itemService.setData(data);
-            this.todoItems = this.itemService.displayItems;
             console.log('get data!', data);
           },
           (error: HttpErrorResponse) => {
@@ -49,7 +50,6 @@ export class TodoItemListComponent implements OnInit {
     this.itemService.getItems().subscribe((data: Item[]) => {
       console.log("00000", data);
       this.itemService.setData(data);
-      this.todoItems = this.itemService.displayItems;
     });
   }
 }
