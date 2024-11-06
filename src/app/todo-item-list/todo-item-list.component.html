@@ -10,8 +10,9 @@
 </section>
 
 <section class="api-response">
-    <button (click)="sendTodoItems()">generate</button>
-    <div class="result-card">
-        <p>{{ result }}</p>
+    <button (click)="sendTodoItems()">Generate</button>
+    <div class="result-card" *ngIf="result">
+        <h3>API Response</h3>
+        <div [innerHTML]="formattedResult"></div>
     </div>
 </section>

@@ -391,3 +391,16 @@ html .clear-completed:active {
 	box-shadow: 0 0 2px 2px #CF7D7D;
 	outline: 0;
 }
+
+.api-response {
+  float: right;
+  margin-top: 130px;
+}
+
+.result-card {
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
+              0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
