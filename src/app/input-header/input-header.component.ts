@@ -21,9 +21,7 @@ export class InputHeaderComponent {
     };
     this.itemService.createItem(result).subscribe(
       (ok) => {
-        console.log(ok);
         this.userInput = '';
-
         this.itemAdded.emit(); // 在请求成功后发出事件
       },
       (error) => {
