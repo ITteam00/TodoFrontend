@@ -34,7 +34,7 @@ export class ItemService {
       };
       this.updateFilterStates();
     } else if (type === 'completed') {
-      console.log('ccccco');
+      this.displayItems = this.items.slice().filter(item => item.done);
     } else {
       console.log('service ,all');
       this.filterState = {
