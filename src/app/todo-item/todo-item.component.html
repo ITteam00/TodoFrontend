@@ -1,6 +1,6 @@
 <li [class.completed]="item.done">
     <div class="view">
-        <input class="toggle" type="checkbox" [checked]="item.done" />
+        <input class="toggle" type="checkbox" [checked]="item.done" (click)="toggleTodo()"/>
         <label>{{item.description}}</label>
         <button class="destroy" (click)="onDeleteClick()"></button>
     </div>

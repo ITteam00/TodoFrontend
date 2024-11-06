@@ -25,6 +25,27 @@ export class ItemService {
     this.apiUrl = environment.apiUrl;
   }
 
+  setItemsFilter(type: string) {
+    if (type === 'active') {
+      this.filterState = {
+        sortByDes: false,
+        sortByTime: false,
+        hideDone: true,
+      };
+      this.updateFilterStates();
+    } else if (type === 'completed') {
+      console.log('ccccco');
+    } else {
+      console.log('service ,all');
+      this.filterState = {
+        sortByDes: false,
+        sortByTime: false,
+        hideDone: false,
+      };
+      this.updateFilterStates();
+    }
+  }
+
   updateFilterStates() {
     this.displayItems = this.filterData(this.searchValue);
   }

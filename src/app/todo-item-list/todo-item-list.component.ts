@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Item } from '../models/item.model';
 import { ItemService } from '../item.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-todo-item-list',
@@ -9,9 +10,13 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrl: './todo-item-list.component.css',
 })
 export class TodoItemListComponent implements OnInit {
-  constructor(private itemService: ItemService) {}
+  constructor(private itemService: ItemService, private location: Location) {}
 
   get todoItems() {
+    const filter = this.location.path().split('/')[1] || 'all';
+    console.log('11111', filter);
+
+    this.itemService.setItemsFilter(filter);
     return this.itemService.displayItems;
   }
 
@@ -26,6 +31,29 @@ export class TodoItemListComponent implements OnInit {
       }
     );
   }
+
+  onSetDone(setDoneId: string) {
+    let item = this.itemService.displayItems.find((x) => x.id == setDoneId);
+    item!.done = !item?.done;
+    this.itemService.updateItem(item!).subscribe(
+      (data: Item) => {
+        console.log('Item updated successfully:', data);
+        this.itemService.getItems().subscribe(
+          (data) => {
+            this.itemService.setData(data);
+          },
+          (error: HttpErrorResponse) => {
+            console.log(error, error.error?.message, error.message);
+          }
+        );
+      },
+      (error: HttpErrorResponse) => {
+        console.log('Item updated  response error');
+        console.log(error);
+      }
+    );
+  }
+
   onRemove(removeId: string) {
     this.itemService.deleteItem(removeId).subscribe(
       () => {
@@ -44,5 +72,4 @@ export class TodoItemListComponent implements OnInit {
       }
     );
   }
-
 }

@@ -8,9 +8,15 @@ import { Item } from '../models/item.model';
 })
 export class TodoItemComponent {
   @Output() removeId = new EventEmitter();
+  @Output() setDone = new EventEmitter();
+
+  @Input() item!: Item;
 
   onDeleteClick() {
     this.removeId.emit(this.item.id);
   }
-  @Input() item!: Item;
+
+  toggleTodo() {
+    this.setDone.emit(this.item.id);
+  }
 }
