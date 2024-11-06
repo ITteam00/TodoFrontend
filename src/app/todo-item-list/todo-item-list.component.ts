@@ -3,6 +3,7 @@ import { Item } from '../models/item.model';
 import { ItemService } from '../item.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Location } from '@angular/common';
+import { TextGenerationService } from '../text-generation.service';
 
 @Component({
   selector: 'app-todo-item-list',
@@ -10,7 +11,13 @@ import { Location } from '@angular/common';
   styleUrl: './todo-item-list.component.css',
 })
 export class TodoItemListComponent implements OnInit {
-  constructor(private itemService: ItemService, private location: Location) {}
+  result: string = '123';
+
+  constructor(
+    private itemService: ItemService,
+    private location: Location,
+    private apiService: TextGenerationService
+  ) {}
 
   get todoItems() {
     const filter = this.location.path().split('/')[1] || 'all';
@@ -69,6 +76,18 @@ export class TodoItemListComponent implements OnInit {
       },
       (error: HttpErrorResponse) => {
         console.log('Delete failed', error.error?.message, error.message);
+      }
+    );
+  }
+
+  sendTodoItems() {
+    const todoItemsString = this.todoItems.map((item) => item.description).join('\n');
+    this.apiService.generateContent(todoItemsString).subscribe(
+      (data) => {
+        this.result = data;
+      },
+      (error) => {
+        console.log('!!' + error);
       }
     );
   }

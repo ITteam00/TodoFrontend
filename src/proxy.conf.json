@@ -1,0 +1,8 @@
+{
+  "/api/v1/services": {
+    "target": "https://dashscope.aliyuncs.com",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
