@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ItemService } from '../item.service';
 import { Item } from '../models/item.model';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-input-header',
@@ -9,7 +10,6 @@ import { Item } from '../models/item.model';
 })
 export class InputHeaderComponent {
   userInput: string = '';
-  @Output() itemAdded = new EventEmitter<void>();
 
   constructor(private itemService: ItemService) {}
 
@@ -22,7 +22,15 @@ export class InputHeaderComponent {
     this.itemService.createItem(result).subscribe(
       (ok) => {
         this.userInput = '';
-        this.itemAdded.emit(); // 在请求成功后发出事件
+        this.itemService.getItems().subscribe(
+          (data) => {
+            this.itemService.setData(data);
+            console.log('get data after added!', data);
+          },
+          (error: HttpErrorResponse) => {
+            console.log(error, error.error?.message, error.message);
+          }
+        );
       },
       (error) => {
         console.error('Error creating item:', error);

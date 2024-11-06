@@ -8,15 +8,5 @@ import { TodoItemListComponent } from './todo-item-list/todo-item-list.component
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  
-  @ViewChild(TodoItemListComponent)
-    
-  todoItemListComponent!: TodoItemListComponent;
-  onItemAdded() {
-    console.log('on item added');
-    const todoListComponent = document.querySelector('app-todo-item-list');
-    if (this.todoItemListComponent) {
-      this.todoItemListComponent.refreshItems();
-    }
-  }
+
 }
